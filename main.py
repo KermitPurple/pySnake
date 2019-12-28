@@ -1,9 +1,9 @@
 import os, sys
-from colorama import init, Fore, Back
+from colorama import init, Fore, Back, Style
 init()
 
 height = 20
-width = 20
+width = 26
 
 class coord:
     def __init__(self, xcoord = 1, ycoord = 1):
@@ -24,6 +24,7 @@ def print_board():
             gotoxy(2 * j - 1, i)
             if not((i > 1 and i < height + 2) and (j > 1 and j < width + 2)):
                 print(Back.WHITE + "  ")
+                print(Style.RESET_ALL)
 
 print_board()
 
@@ -31,10 +32,10 @@ print_board()
 
 
 
-head = coord()
-os.system("cls")
-print("test")
-gotoxy(head.x, head.y)
-print("test")
-gotoxy(head.x, head.y)
-print("test")
+#head = coord()
+#os.system("cls")
+#print("test")
+#gotoxy(head.x, head.y)
+#print("test")
+#gotoxy(head.x, head.y)
+#print("test")
