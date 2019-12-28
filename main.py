@@ -1,4 +1,4 @@
-import os
+import os, sys
 from colorama import init, Fore
 init()
 
@@ -8,8 +8,8 @@ class coord:
         self.y = ycoord
 
 def gotoxy(x, y):
-    print("\033[%d;%dH" % (y, x))
-
+    sys.stdout.write("\033[%d;%dH" % (y, x))
+    sys.stdout.flush()
 
 head = coord(9,5)
 
