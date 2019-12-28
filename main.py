@@ -10,6 +10,10 @@ class coord:
 def gotoxy(x, y):
     sys.stdout.write("\033[%d;%dH" % (y, x))
     sys.stdout.flush()
+    
+def gotogamexy(x, y):
+    #TODO: adjust this for grid once it is made
+    gotoxy(x * 2, y)
 
 head = coord()
 
