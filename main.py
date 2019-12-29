@@ -33,19 +33,20 @@ def move(direction):
     if direction == 'w':
         head.y -= 1
         if head.y < 1:
-            running = False
+            return False
     if direction == 'a':
         head.x -= 1
         if head.x < 1:
-            running = False
+            return False
     if direction == 's':
         head.y += 1
         if head.y > height:
-            running = False
+            return False
     if direction == 'd':
         head.x += 1
         if head.x > width:
-            running = False
+            return False
+    return True
 
 
 def kbin(previous_direction):
@@ -75,7 +76,8 @@ while running:
     print_head()
     direction = kbin(previous_direction)
     previous_direction = direction
-    move(direction)
+    if not move(direction):
+        break
     time.sleep(0.1)
 
 
