@@ -1,7 +1,8 @@
-import os, sys, time
+import os, sys, time, cursor
 import msvcrt
 from colorama import init, Fore, Back, Style
 init()
+cursor.hide()
 
 class coord:
     def __init__(self, xcoord = 1, ycoord = 1):
@@ -77,3 +78,4 @@ while True:
 
 
 gotoxy(1, height + 3)
+cursor.show()
