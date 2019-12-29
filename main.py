@@ -45,7 +45,6 @@ def move(direction):
     if direction == 'd':
         head.x += 1
 
-
 def kbin(previous_direction):
     if msvcrt.kbhit():
         key = msvcrt.getch()
