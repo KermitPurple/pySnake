@@ -13,7 +13,7 @@ def gotoxy(x, y):
     sys.stdout.flush()
     
 def gotogamexy(x, y):
-    gotoxy((x + 1) * 2, y + 1)
+    gotoxy(x * 2 + 1, y + 1)
 
 def print_board():
     os.system("cls")
@@ -34,14 +34,22 @@ def kbin():
         key = msvcrt.getch()
         if key == b'w':
             head.y -= 1
+            if head.y < 1:
+                head.y += 1
         if key == b'a':
             head.x -= 1
+            if head.x < 1:
+                head.x += 1
         if key == b's':
             head.y += 1
+            if head.y > height:
+                head.y -= 1
         if key == b'd':
             head.x += 1
+            if head.x > width:
+                head.x -= 1
 
-height = 25
+height = 26
 width = 30
 head = coord(width / 2, height / 2)
 
