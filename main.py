@@ -1,10 +1,6 @@
-import os, sys
+import os, sys, time, curses
 from colorama import init, Fore, Back, Style
 init()
-
-height = 25
-width = 30
-
 
 class coord:
     def __init__(self, xcoord = 1, ycoord = 1):
@@ -27,16 +23,22 @@ def print_board():
                 print(Back.WHITE + "  ")
     print(Style.RESET_ALL)
 
+def print_head():
+    gotogamexy(head.x, head.y)
+    print(Back.RED + "  ")
+    print(Style.RESET_ALL)
+
+def kbin():
+    pass
+
+height = 25
+width = 30
+head = coord(width / 2, height / 2)
+
 print_board()
+while True:
+    print_head()
+    kbin()
 
 
-
-
-
-#head = coord()
-#os.system("cls")
-#print("test")
-#gotoxy(head.x, head.y)
-#print("test")
-#gotoxy(head.x, head.y)
-#print("test")
+gotoxy(1, height + 3)
