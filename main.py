@@ -1,4 +1,4 @@
-import os, sys, time, curses
+import os, sys, time
 from colorama import init, Fore, Back, Style
 init()
 
