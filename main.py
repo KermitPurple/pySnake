@@ -29,24 +29,20 @@ def print_head():
     print(Back.RED + Fore.BLACK + "00")
     print(Style.RESET_ALL)
 
+def loss():
+    if head.y < 1 or head.y > height or head.x < 1 or head.x > width:
+        return True
+    return False
+
 def move(direction):
     if direction == 'w':
         head.y -= 1
-        if head.y < 1:
-            return False
     if direction == 'a':
         head.x -= 1
-        if head.x < 1:
-            return False
     if direction == 's':
         head.y += 1
-        if head.y > height:
-            return False
     if direction == 'd':
         head.x += 1
-        if head.x > width:
-            return False
-    return True
 
 
 def kbin(previous_direction):
@@ -70,14 +66,13 @@ width = 30
 head = coord(width / 2, height / 2)
 
 previous_direction = ' '
-running = True
 print_board()
-while running:
+while True:
     print_head()
     direction = kbin(previous_direction)
     previous_direction = direction
-    if not move(direction):
-        break
+    move(direction)
+    if loss(): break
     time.sleep(0.1)
 
 
