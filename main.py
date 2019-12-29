@@ -1,4 +1,5 @@
 import os, sys, time
+import msvcrt
 from colorama import init, Fore, Back, Style
 init()
 
@@ -29,7 +30,16 @@ def print_head():
     print(Style.RESET_ALL)
 
 def kbin():
-    pass
+ if msvcrt.kbhit():
+        key = msvcrt.getch()
+        if key == b'w':
+            head.y -= 1
+        if key == b'a':
+            head.x -= 1
+        if key == b's':
+            head.y += 1
+        if key == b'd':
+            head.x += 1
 
 height = 25
 width = 30
