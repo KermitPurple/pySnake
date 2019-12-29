@@ -29,55 +29,55 @@ def print_head():
     print(Back.RED + Fore.BLACK + "00")
     print(Style.RESET_ALL)
 
-def move():
+def move(direction):
     if direction == 'w':
         head.y -= 1
         if head.y < 1:
             running = False
-    elif direction == 'a':
+    if direction == 'a':
         head.x -= 1
         if head.x < 1:
             running = False
-    elif direction == 's':
+    if direction == 's':
         head.y += 1
         if head.y > height:
             running = False
-    elif direction == 'd':
+    if direction == 'd':
         head.x += 1
         if head.x > width:
             running = False
-    else:
-        print("Its fucked")
 
 
-def kbin():
+def kbin(previous_direction):
     if msvcrt.kbhit():
         key = msvcrt.getch()
         if key == b'w':
-            direction = 'w'
+            return 'w'
         elif key == b'a':
-            direction = 'a'
+            return 'a'
         elif key == b's':
-            direction = 's'
+            return 's'
         elif key == b'd':
-            direction = 'd'
+            return 'd'
         else:
-            print("Even more fucked")
+            return previous_direction
     else:
-        print("greater fucked")
+        return previous_direction
 
 height = 26
 width = 30
 head = coord(width / 2, height / 2)
 
-direction = ' '
+direction = 'a'
+previous_direction = ' '
 running = True
 print_board()
 while running:
     print_head()
-    kbin()
-    move()
-    time.sleep(100)
+    direction = kbin(previous_direction)
+    previous_direction = direction
+    move(direction)
+    time.sleep(0.1)
 
 
 gotoxy(1, height + 3)
