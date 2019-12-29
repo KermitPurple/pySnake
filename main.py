@@ -26,7 +26,7 @@ def print_board():
 
 def print_head():
     gotogamexy(head.x, head.y)
-    print(Back.RED + "  ")
+    print(Back.RED + "00")
     print(Style.RESET_ALL)
 
 def kbin():
