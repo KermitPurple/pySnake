@@ -68,7 +68,6 @@ height = 26
 width = 30
 head = coord(width / 2, height / 2)
 
-direction = 'a'
 previous_direction = ' '
 running = True
 print_board()
