@@ -31,9 +31,13 @@ def print_head():
     print(Style.RESET_ALL)
 
 def print_tail():
-    gotogamexy(tail.x, tail.y)
+    gotogamexy(tail[0].x, tail[0].y)
     print(Back.RED + Fore.YELLOW + "()")
     print(Style.RESET_ALL)
+
+def delete_tail():
+    gotogamexy(tail[length].x, tail[length].y)
+    print("  ")
 
 def loss():
     if head.y < 1 or head.y > height or head.x < 1 or head.x > width:
@@ -41,8 +45,8 @@ def loss():
     return False
 
 def move(direction):
-    tail.x = head.x
-    tail.y = head.y
+    tail[length].x = head.x
+    tail[length].y = head.y
     if direction == 'w':
         head.y -= 1
     if direction == 'a':
@@ -71,12 +75,15 @@ def kbin(previous_direction):
 height = 26
 width = 30
 head = coord(width / 2, height / 2)
-tail = coord(head.x, head.y)
+tail = [coord(head.x, head.y)] * 100
+length = 0
+length_to_add = 0
 
 previous_direction = ' '
 print_board()
 while True:
     print_tail()
+    delete_tail()
     print_head()
     direction = kbin(previous_direction)
     previous_direction = direction
