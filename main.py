@@ -63,25 +63,21 @@ def move(direction):
     if direction == 'd':
         head.x += 1
 
-def kbin(previous_direction):
+def kbin():
+    global direction
     if msvcrt.kbhit():
         key = msvcrt.getch()
         if key == b'w':
-            return 'w'
+            direction = 'w'
         elif key == b'a':
-            return 'a'
+            direction = 'a'
         elif key == b's':
-            return 's'
+            direction = 's'
         elif key == b'd':
-            return 'd'
+            direction = 'd'
         elif key == b'q':
             for i in range(length):
                 print(tail[i].x, ",", tail[i].y)
-            return previous_direction
-        else:
-            return previous_direction
-    else:
-        return previous_direction
 
 height = 26
 width = 30
@@ -89,15 +85,13 @@ head = coord(width / 2, height / 2)
 tail = [coord(head.x, head.y)] * 10
 length = 1
 length_to_add = 10
-
-previous_direction = 'a'
+direction = 'a'
 print_board()
 while True:
     print_head()
     print_tail()
     delete_tail()
-    direction = kbin(previous_direction)
-    previous_direction = direction
+    kbin()
     move(direction)
     if loss(): break
     time.sleep(0.1)
