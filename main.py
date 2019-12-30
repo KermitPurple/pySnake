@@ -111,8 +111,7 @@ while True:
     kbin()
     move()
     if loss(): break
-    if detect_coin_collect():
-        new_coin()
+    if detect_coin_collect(): new_coin()
     time.sleep(0.1)
 gotoxy(1, height + 3)
 cursor.show()
