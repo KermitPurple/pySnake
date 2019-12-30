@@ -47,9 +47,10 @@ def loss():
             return True
     return False
 
-def move(direction):
+def move():
     global length_to_add
     global length
+    global direction
     tail.insert(0, coord(head.x, head.y))
     if length_to_add != 0:
         length += 1
@@ -92,7 +93,7 @@ while True:
     print_tail()
     delete_tail()
     kbin()
-    move(direction)
+    move()
     if loss(): break
     time.sleep(0.1)
 gotoxy(1, height + 3)
