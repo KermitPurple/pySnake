@@ -17,6 +17,11 @@ def gotoxy(x, y):
 def gotogamexy(x, y):
     gotoxy(x * 2 + 1, y + 1)
 
+def print_score():
+    global score
+    gotoxy(8, height + 3)
+    print(score)
+
 def print_board():
     os.system("cls")
     for i in range(1, height + 3):
@@ -25,6 +30,9 @@ def print_board():
             if not((i > 1 and i < height + 2) and (j > 1 and j < width + 2)):
                 print(Back.WHITE + "  ")
     print(Style.RESET_ALL)
+    gotoxy(1, height + 3)
+    print("Score:")
+    print_score()
 
 def print_head():
     gotogamexy(head.x, head.y)
@@ -83,7 +91,12 @@ def kbin():
 
 def detect_coin_collect():
     global coin
+    global score
+    global length_to_add
     if coin.x == head.x and coin.y == head.y:
+        score += 1
+        length_to_add += 3
+        print_score()
         return True
     return False
 
@@ -99,7 +112,7 @@ width = 30 # ^^^^^^^^^^^^^^^^^^^^^
 head = coord(width / 2, height / 2)
 coin = None
 tail = [coord(head.x, head.y)]
-length_to_add = 10
+length_to_add = 3
 direction = 'a'
 score = 0
 print_board()
