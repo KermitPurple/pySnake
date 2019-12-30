@@ -89,6 +89,20 @@ def kbin():
         elif key == b'd':
             if direction != 'a':
                 direction = 'd'
+        elif key == b'\xe0': #special key
+            key = getch()
+            if key == b'H':
+                if direction != 's':
+                    direction = 'w'
+            elif key == b'K':
+                if direction != 'd':
+                    direction = 'a'
+            elif key == b'P':
+                if direction != 'w':
+                    direction = 's'
+            elif key == b'M':
+                if direction != 'a':
+                    direction = 'd'
 
 def detect_fruit_collect():
     global fruit
