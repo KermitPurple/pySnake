@@ -80,8 +80,8 @@ def kbin():
             for point in tail:
                 print(point.x, ",", point.y)
 
-height = 26
-width = 30
+height = 26 # Make these values even or the spawnpoint will not be on a square usable in the game
+width = 30 # ^^^^^^^^^^^^^^^^^^^^^
 head = coord(width / 2, height / 2)
 tail = [coord(head.x, head.y)]
 length_to_add = 10
