@@ -102,13 +102,15 @@ def detect_coin_collect():
 
 def new_coin():
     global coin
-    coin_in_tail = True
-    while coin_in_tail:
+    while True:
         coin = coord(randrange(1, width), randrange(1, height))
+        coin_in_tail = False
         for point in tail:
-            if coin != point:
-                coin_in_tail = False
+            if coin.x == point.x and coin.y == point.y:
+                coin_in_tail = True
+                print("still works")
                 break
+        if not coin_in_tail: break
     gotogamexy(coin.x, coin.y)
     print(Back.GREEN + "  ")
     print(Style.RESET_ALL)
@@ -129,8 +131,8 @@ while True:
     delete_tail()
     kbin()
     move()
+    time.sleep(0.1)
     if loss(): break
     if detect_coin_collect(): new_coin()
-    time.sleep(0.1)
 gotoxy(1, height + 3)
 cursor.show()
