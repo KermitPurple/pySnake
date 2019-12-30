@@ -41,7 +41,10 @@ def delete_tail():
 
 def loss():
     if head.y < 1 or head.y > height or head.x < 1 or head.x > width:
-        return True
+            return True
+    for i in range(length):
+        if tail[i].x == head.x and tail[i].y == head.y:
+            return True
     return False
 
 def move(direction):
@@ -71,6 +74,10 @@ def kbin(previous_direction):
             return 's'
         elif key == b'd':
             return 'd'
+        elif key == b'q':
+            for i in range(length):
+                print(tail[i].x, ",", tail[i].y)
+            return previous_direction
         else:
             return previous_direction
     else:
