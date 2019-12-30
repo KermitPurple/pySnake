@@ -36,25 +36,25 @@ def print_tail():
     print(Style.RESET_ALL)
 
 def delete_tail():
-    gotogamexy(tail[length - 1].x, tail[length - 1].y)
+    gotogamexy(tail[-1].x, tail[-1].y)
     print("  ")
 
 def loss():
     if head.y < 1 or head.y > height or head.x < 1 or head.x > width:
             return True
-    for i in range(length):
-        if tail[i].x == head.x and tail[i].y == head.y:
+    for point in tail:
+        if point.x == head.x and point.y == head.y:
             return True
     return False
 
 def move():
     global length_to_add
-    global length
     global direction
     tail.insert(0, coord(head.x, head.y))
     if length_to_add != 0:
-        length += 1
         length_to_add -= 1
+    else:
+        _ = tail.pop()
     if direction == 'w':
         head.y -= 1
     if direction == 'a':
@@ -77,14 +77,13 @@ def kbin():
         elif key == b'd':
             direction = 'd'
         elif key == b'q':
-            for i in range(length):
-                print(tail[i].x, ",", tail[i].y)
+            for point in tail:
+                print(point.x, ",", point.y)
 
 height = 26
 width = 30
 head = coord(width / 2, height / 2)
 tail = [coord(head.x, head.y)]
-length = 1
 length_to_add = 10
 direction = 'a'
 print_board()
