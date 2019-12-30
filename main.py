@@ -109,7 +109,6 @@ def new_coin():
             if coin != point:
                 coin_in_tail = False
                 break
-
     gotogamexy(coin.x, coin.y)
     print(Back.GREEN + "  ")
     print(Style.RESET_ALL)
