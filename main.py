@@ -97,7 +97,7 @@ def new_coin():
 height = 26 # Make these values even or the spawnpoint will not be on a square usable in the game
 width = 30 # ^^^^^^^^^^^^^^^^^^^^^
 head = coord(width / 2, height / 2)
-coin = coord(1, 1)
+coin = None
 tail = [coord(head.x, head.y)]
 length_to_add = 10
 direction = 'a'
