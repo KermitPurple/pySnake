@@ -95,7 +95,5 @@ while True:
     move(direction)
     if loss(): break
     time.sleep(0.1)
-
-
 gotoxy(1, height + 3)
 cursor.show()
