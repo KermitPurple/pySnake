@@ -89,42 +89,41 @@ def kbin():
             for point in tail:
                 print(point.x, ",", point.y)
 
-def detect_coin_collect():
-    global coin
+def detect_fruit_collect():
+    global fruit
     global score
     global length_to_add
-    if coin.x == head.x and coin.y == head.y:
+    if fruit.x == head.x and fruit.y == head.y:
         score += 1
         length_to_add += 3
         print_score()
         return True
     return False
 
-def new_coin():
-    global coin
+def new_fruit():
+    global fruit
     while True:
-        coin = coord(randrange(1, width), randrange(1, height))
-        coin_in_tail = False
+        fruit = coord(randrange(1, width), randrange(1, height))
+        fruit_in_tail = False
         for point in tail:
-            if coin.x == point.x and coin.y == point.y:
-                coin_in_tail = True
-                print("still works")
+            if fruit.x == point.x and fruit.y == point.y:
+                fruit_in_tail = True
                 break
-        if not coin_in_tail: break
-    gotogamexy(coin.x, coin.y)
+        if not fruit_in_tail: break
+    gotogamexy(fruit.x, fruit.y)
     print(Back.GREEN + "  ")
     print(Style.RESET_ALL)
 
 height = 28 # Make these values even or the spawnpoint will not be on a square usable in the game
 width = 28 # ^^^^^^^^^^^^^^^^^^^^^
 head = coord(width / 2, height / 2)
-coin = None
+fruit = None
 tail = [coord(head.x, head.y)]
 length_to_add = 3
 direction = 'a'
 score = 0
 print_board()
-new_coin()
+new_fruit()
 while True:
     print_head()
     print_tail()
@@ -133,6 +132,6 @@ while True:
     move()
     time.sleep(0.1)
     if loss(): break
-    if detect_coin_collect(): new_coin()
+    if detect_fruit_collect(): new_fruit()
 gotoxy(1, height + 3)
 cursor.show()
