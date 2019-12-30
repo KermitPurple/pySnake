@@ -78,13 +78,17 @@ def kbin():
     if kbhit():
         key = getch()
         if key == b'w':
-            direction = 'w'
+            if direction != 's':
+                direction = 'w'
         elif key == b'a':
-            direction = 'a'
+            if direction != 'd':
+                direction = 'a'
         elif key == b's':
-            direction = 's'
+            if direction != 'w':
+                direction = 's'
         elif key == b'd':
-            direction = 'd'
+            if direction != 'a':
+                direction = 'd'
         elif key == b'q':
             for point in tail:
                 print(point.x, ",", point.y)
