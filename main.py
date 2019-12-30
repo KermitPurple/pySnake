@@ -113,8 +113,8 @@ def new_coin():
     print(Back.GREEN + "  ")
     print(Style.RESET_ALL)
 
-height = 36 # Make these values even or the spawnpoint will not be on a square usable in the game
-width = 36 # ^^^^^^^^^^^^^^^^^^^^^
+height = 28 # Make these values even or the spawnpoint will not be on a square usable in the game
+width = 28 # ^^^^^^^^^^^^^^^^^^^^^
 head = coord(width / 2, height / 2)
 coin = None
 tail = [coord(head.x, head.y)]
