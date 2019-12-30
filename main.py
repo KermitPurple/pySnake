@@ -89,9 +89,6 @@ def kbin():
         elif key == b'd':
             if direction != 'a':
                 direction = 'd'
-        elif key == b'q':
-            for point in tail:
-                print(point.x, ",", point.y)
 
 def detect_fruit_collect():
     global fruit
