@@ -102,7 +102,14 @@ def detect_coin_collect():
 
 def new_coin():
     global coin
-    coin = coord(randrange(1, width), randrange(1, height))
+    coin_in_tail = True
+    while coin_in_tail:
+        coin = coord(randrange(1, width), randrange(1, height))
+        for point in tail:
+            if coin != point:
+                coin_in_tail = False
+                break
+
     gotogamexy(coin.x, coin.y)
     print(Back.GREEN + "  ")
     print(Style.RESET_ALL)
