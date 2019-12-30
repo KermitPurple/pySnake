@@ -1,4 +1,5 @@
 import os, sys, time, cursor
+from random import randrange
 from msvcrt import getch, kbhit
 from colorama import init, Fore, Back, Style
 init()
@@ -81,14 +82,22 @@ def kbin():
                 print(point.x, ",", point.y)
 
 def detect_coin_collect():
+    global coin
+    if coin.x == head.x and coin.y == head.y:
+        return True
     return False
 
 def new_coin():
-    pass
+    global coin
+    coin = coord(randrange(1, width), randrange(1, height))
+    gotogamexy(coin.x, coin.y)
+    print(Back.GREEN + "  ")
+    print(Style.RESET_ALL)
 
 height = 26 # Make these values even or the spawnpoint will not be on a square usable in the game
 width = 30 # ^^^^^^^^^^^^^^^^^^^^^
 head = coord(width / 2, height / 2)
+coin = coord(1, 1)
 tail = [coord(head.x, head.y)]
 length_to_add = 10
 direction = 'a'
@@ -102,7 +111,8 @@ while True:
     kbin()
     move()
     if loss(): break
-    if detect_coin_collect(): new_coin()
+    if detect_coin_collect():
+        new_coin()
     time.sleep(0.1)
 gotoxy(1, height + 3)
 cursor.show()
