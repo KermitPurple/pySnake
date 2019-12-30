@@ -80,13 +80,21 @@ def kbin():
             for point in tail:
                 print(point.x, ",", point.y)
 
+def detect_coin_collect():
+    return False
+
+def new_coin():
+    pass
+
 height = 26 # Make these values even or the spawnpoint will not be on a square usable in the game
 width = 30 # ^^^^^^^^^^^^^^^^^^^^^
 head = coord(width / 2, height / 2)
 tail = [coord(head.x, head.y)]
 length_to_add = 10
 direction = 'a'
+score = 0
 print_board()
+new_coin()
 while True:
     print_head()
     print_tail()
@@ -94,6 +102,7 @@ while True:
     kbin()
     move()
     if loss(): break
+    if detect_coin_collect(): new_coin():
     time.sleep(0.1)
 gotoxy(1, height + 3)
 cursor.show()
