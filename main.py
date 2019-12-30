@@ -83,7 +83,7 @@ def kbin():
 height = 26
 width = 30
 head = coord(width / 2, height / 2)
-tail = [coord(head.x, head.y)] * 10
+tail = [coord(head.x, head.y)]
 length = 1
 length_to_add = 10
 direction = 'a'
