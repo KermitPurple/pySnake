@@ -1,5 +1,5 @@
 import os, sys, time, cursor
-import msvcrt
+from msvcrt import getch, kbhit
 from colorama import init, Fore, Back, Style
 init()
 cursor.hide()
@@ -66,8 +66,8 @@ def move():
 
 def kbin():
     global direction
-    if msvcrt.kbhit():
-        key = msvcrt.getch()
+    if kbhit():
+        key = getch()
         if key == b'w':
             direction = 'w'
         elif key == b'a':
