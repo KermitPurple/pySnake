@@ -124,6 +124,8 @@ def new_fruit():
             if fruit.x == point.x and fruit.y == point.y:
                 fruit_in_tail = True
                 break
+        if fruit.x == head.x and fruit.y == head.y:
+            fruit_in_tail = True
         if not fruit_in_tail: break
     gotogamexy(fruit.x, fruit.y)
     print(Back.GREEN + "  ")
