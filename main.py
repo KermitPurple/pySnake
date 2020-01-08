@@ -73,6 +73,13 @@ def move():
     if direction == 'd':
         head.x += 1
 
+def pause():
+    global paused
+    if paused:
+        paused = False
+    else:
+        paused = True
+
 def kbin():
     global direction
     if kbhit():
@@ -89,6 +96,8 @@ def kbin():
         elif key == b'd':
             if direction != 'a':
                 direction = 'd'
+        elif key == b'p':
+            pause()
         elif key == b'\xe0': #special key
             key = getch()
             if key == b'H':
@@ -139,16 +148,18 @@ tail = [coord(head.x, head.y)]
 length_to_add = 3
 direction = 'a'
 score = 0
+paused = False;
 print_board()
 new_fruit()
 while True:
-    print_head()
-    print_tail()
-    delete_tail()
     kbin()
-    move()
-    time.sleep(0.1)
-    if loss(): break
-    if detect_fruit_collect(): new_fruit()
+    if not paused:
+        print_head()
+        print_tail()
+        delete_tail()
+        move()
+        time.sleep(0.1)
+        if loss(): break
+        if detect_fruit_collect(): new_fruit()
 gotoxy(1, height + 3)
 cursor.show()
