@@ -75,10 +75,7 @@ def move():
 
 def pause():
     global paused
-    if paused:
-        paused = False
-    else:
-        paused = True
+    paused = not paused
 
 def kbin():
     global direction
