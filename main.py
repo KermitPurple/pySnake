@@ -169,7 +169,7 @@ def main():
         if player:
             kbin()
         else:
-            direction = bot_move()
+            direction = bot_move(fruit, direction, height, width, tail, head)
         if not paused:
             print_head()
             print_tail()
