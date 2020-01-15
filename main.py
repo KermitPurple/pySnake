@@ -137,26 +137,31 @@ def new_fruit():
     print(Back.GREEN + "  ")
     print(Style.RESET_ALL)
 
-height = 28 # Make these values even or the spawnpoint will not be on a square usable in the game
-width = 28 # ^^^^^^^^^^^^^^^^^^^^^
-head = coord(width / 2, height / 2)
-fruit = None
-tail = [coord(head.x, head.y)]
-length_to_add = 3
-direction = 'a'
-score = 0
-paused = False;
-print_board()
-new_fruit()
-while True:
-    kbin()
-    if not paused:
-        print_head()
-        print_tail()
-        delete_tail()
-        move()
-        time.sleep(0.1)
-        if loss(): break
-        if detect_fruit_collect(): new_fruit()
-gotoxy(1, height + 3)
-cursor.show()
+def main():
+    global fruit, score, length_to_add, paused, direction, height, width, tail, head
+    height = 28 # Make these values even or the spawnpoint will not be on a square usable in the game
+    width = 28 # ^^^^^^^^^^^^^^^^^^^^^
+    head = coord(width / 2, height / 2)
+    fruit = None
+    tail = [coord(head.x, head.y)]
+    length_to_add = 3
+    direction = 'a'
+    score = 0
+    paused = False;
+    print_board()
+    new_fruit()
+    while True:
+        kbin()
+        if not paused:
+            print_head()
+            print_tail()
+            delete_tail()
+            move()
+            time.sleep(0.1)
+            if loss(): break
+            if detect_fruit_collect(): new_fruit()
+    gotoxy(1, height + 3)
+    cursor.show()
+
+if __name__ == "__main__":
+    main()
