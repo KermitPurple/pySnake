@@ -2,6 +2,7 @@ import os, sys, time, cursor
 from random import randrange
 from msvcrt import getch, kbhit
 from colorama import init, Fore, Back, Style
+from bot import bot_move
 init()
 cursor.hide()
 
@@ -16,6 +17,19 @@ def gotoxy(x, y):
     
 def gotogamexy(x, y):
     gotoxy(x * 2 + 1, y + 1)
+
+def menu():
+    print("1) Play")
+    print("2) Bot")
+    print("3) Exit")
+    while(True):
+        ch = getch()
+        if ch == b'1':
+            return True
+        elif ch == b'2':
+            return False
+        elif ch == b'3':
+            exit()
 
 def print_score():
     global score
@@ -148,10 +162,14 @@ def main():
     direction = 'a'
     score = 0
     paused = False;
+    player = menu()
     print_board()
     new_fruit()
     while True:
-        kbin()
+        if player:
+            kbin()
+        else:
+            direction = bot_move()
         if not paused:
             print_head()
             print_tail()
