@@ -18,7 +18,6 @@ def bot_move(fruit, direction, height, width, tail, head):
     else:
         return panic_mode(fruit, direction, height, width, tail, head)
 
-
 def valid_move(fruit, direction, height, width, tail, head, potential_direction):
     if potential_direction == 'w':
         new_pos = coord(head.x, head.y - 1)
