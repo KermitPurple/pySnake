@@ -1,7 +1,6 @@
 from coord import coord
 
 def bot_move(fruit, direction, height, width, tail, head):
-    #create logic
     if head.x < fruit.x:
         if valid_move(fruit, direction, height, width, tail, head, 'd'):
             return 'd'
@@ -40,6 +39,5 @@ def panic_mode(fruit, direction, height, width, tail, head):
     for potential_direction in ['w','a','s','d']:
         if valid_move(fruit, direction, height, width, tail, head, potential_direction):
             return potential_direction
-        else:
-            return direction
+    return direction
 
