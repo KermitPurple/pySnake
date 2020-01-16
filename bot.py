@@ -14,11 +14,10 @@ def bot_move(fruit, direction, height, width, tail, head):
     if head.y > fruit.y:
         if valid_move(fruit, direction, height, width, tail, head, 'w'):
             return 'w'
+    if valid_move(fruit, direction, height, width, tail, head, direction):
+        return direction
     else:
-        if valid_move(fruit, direction, height, width, tail, head, direction):
-            return direction
-        else:
-            panic_mode(fruit, direction, height, width, tail, head)
+        return panic_mode(fruit, direction, height, width, tail, head)
 
 
 def valid_move(fruit, direction, height, width, tail, head, potential_direction):
