@@ -157,7 +157,7 @@ def main():
     length_to_add = 3
     direction = 'a'
     score = 0
-    paused = False;
+    paused = False
     player = menu()
     print_board()
     new_fruit()

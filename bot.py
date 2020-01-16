@@ -40,4 +40,3 @@ def panic_mode(fruit, direction, height, width, tail, head):
         if valid_move(fruit, direction, height, width, tail, head, potential_direction):
             return potential_direction
     return direction
-
