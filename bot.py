@@ -1,5 +1,7 @@
 from coord import coord
 
+#TODO: create anti box software
+
 def bot_move(fruit, direction, height, width, tail, head):
     if head.x < fruit.x:
         if valid_move(fruit, direction, height, width, tail, head, 'd'):
