@@ -1,15 +1,11 @@
 import os, sys, time, cursor
+from coord import coord
 from random import randrange
 from msvcrt import getch, kbhit
 from colorama import init, Fore, Back, Style
 from bot import bot_move
 init()
 cursor.hide()
-
-class coord:
-    def __init__(self, xcoord = 1, ycoord = 1):
-        self.x = xcoord
-        self.y = ycoord
 
 def gotoxy(x, y):
     sys.stdout.write("\033[%d;%dH" % (y, x))
