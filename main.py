@@ -162,7 +162,7 @@ def main():
     if player:
         sleep_frequency = 0.1
     else:
-        sleep_frequency = 0.001
+        sleep_frequency = 0.003
     print_board()
     new_fruit()
     while True:
