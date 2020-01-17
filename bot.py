@@ -21,6 +21,7 @@ def bot_move(fruit, direction, height, width, tail, head):
         return panic_mode(fruit, direction, height, width, tail, head)
 
 def valid_move(fruit, direction, height, width, tail, head, potential_direction):
+    #create point 1 forward
     if potential_direction == 'w':
         new_pos = coord(head.x, head.y - 1)
     elif potential_direction == 'a':
@@ -29,6 +30,11 @@ def valid_move(fruit, direction, height, width, tail, head, potential_direction)
         new_pos = coord(head.x, head.y + 1)
     elif potential_direction == 'd':
         new_pos = coord(head.x + 1, head.y)
+    #test for moves
+    if not not_boxed(fruit, direction, height, width, tail, head, potential_direction):
+        return False        
+    if not not_one_wide(fruit, direction, height, width, tail, head, potential_direction):
+        return False
     if new_pos.y > height or new_pos.y < 1 or new_pos.x > width or new_pos.x < 1:
         return False
     for point in tail:
@@ -41,3 +47,9 @@ def panic_mode(fruit, direction, height, width, tail, head):
         if valid_move(fruit, direction, height, width, tail, head, potential_direction):
             return potential_direction
     return direction
+
+def not_boxed(fruit, direction, height, width, tail, head, potential_direction):
+    return True
+
+def not_one_wide(fruit, direction, height, width, tail, head, potential_direction):
+    return True
