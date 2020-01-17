@@ -31,10 +31,8 @@ def valid_move(fruit, direction, height, width, tail, head, potential_direction)
     elif potential_direction == 'd':
         new_pos = coord(head.x + 1, head.y)
     #test for moves
-    if not not_boxed(fruit, direction, height, width, tail, head, potential_direction):
+    if not path_exists(fruit, direction, height, width, tail, head, potential_direction):
         return False        
-    if not not_one_wide(fruit, direction, height, width, tail, head, potential_direction):
-        return False
     if new_pos.y > height or new_pos.y < 1 or new_pos.x > width or new_pos.x < 1:
         return False
     for point in tail:
@@ -48,8 +46,5 @@ def panic_mode(fruit, direction, height, width, tail, head):
             return potential_direction
     return direction
 
-def not_boxed(fruit, direction, height, width, tail, head, potential_direction):
-    return True
-
-def not_one_wide(fruit, direction, height, width, tail, head, potential_direction):
+def path_exists(fruit, direction, height, width, tail, head, potential_direction):
     return True
