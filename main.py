@@ -1,9 +1,10 @@
 import os, sys, time, cursor
-import bot, bot2
 from coord import coord
 from random import randrange
 from msvcrt import getch, kbhit
 from colorama import init, Fore, Back, Style
+from bot import bot_move as b1_move
+from bot2 import bot_move as b2_move
 init()
 cursor.hide()
 
@@ -172,9 +173,9 @@ def main():
         if user == 0:
             kbin()
         elif user == 1:
-            direction = bot.bot_move(fruit, direction, height, width, tail, head)
+            direction = b1_move(fruit, direction, height, width, tail, head)
         elif user == 2:
-            direction = bot2.bot_move(fruit, direction, height, width, tail, head)
+            direction = b2_move(fruit, direction, height, width, tail, head)
         if not paused:
             print_head()
             print_tail()
