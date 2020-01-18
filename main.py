@@ -137,19 +137,27 @@ def detect_fruit_collect():
 
 def new_fruit():
     global fruit
-    for i in range(614656):
-        fruit = coord(randrange(1, width), randrange(1, height))
-        fruit_in_tail = False
-        for point in tail[:-1]:
-            if fruit.x == point.x and fruit.y == point.y:
-                fruit_in_tail = True
-                break
-        if fruit.x == head.x and fruit.y == head.y:
-            fruit_in_tail = True
-        if not fruit_in_tail: break
+    fruit_options = []
+    for i in range(height):
+        for j in range(width):
+            fruit = coord(j+1, i+1)
+            keep = True
+            if fruit.x == head.x and fruit.y == head.y:
+                keep = False
+            else:
+                for tail_point in tail[:-1]:
+                    if fruit.x == tail_point.x and fruit.y == tail_point.y:
+                        keep = False
+                        break
+                if keep:
+                    fruit_options.append(fruit)
+    if len(fruit_options) == 0:
+        return False
+    fruit = fruit_options[randrange(len(fruit_options))]
     gotogamexy(fruit.x, fruit.y)
     print(Back.GREEN + "  ")
     print(Style.RESET_ALL)
+    return True
 
 def main():
     global fruit, score, length_to_add, paused, direction, height, width, tail, head
@@ -174,13 +182,15 @@ def main():
         elif user == 2:
             direction = b2_move(fruit, direction, height, width, tail, head)
         if not paused:
-            print_head()
-            print_tail()
             delete_tail()
-            move()
+            print_tail()
+            print_head()
             time.sleep(sleep_frequency[user])
             if loss(): break
-            if detect_fruit_collect(): new_fruit()
+            if detect_fruit_collect(): 
+                if not new_fruit():
+                    break
+            move()
     gotoxy(1, height + 3)
     cursor.show()
 
