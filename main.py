@@ -163,10 +163,7 @@ def main():
     score = 0
     paused = False
     user = menu()
-    if user == 0:
-        sleep_frequency = 0.1
-    else:
-        sleep_frequency = 0.003
+    sleep_frequency = [0.1, 0.003, 0]
     print_board()
     new_fruit()
     while True:
@@ -181,7 +178,7 @@ def main():
             print_tail()
             delete_tail()
             move()
-            time.sleep(sleep_frequency)
+            time.sleep(sleep_frequency[user])
             if loss(): break
             if detect_fruit_collect(): new_fruit()
     gotoxy(1, height + 3)
