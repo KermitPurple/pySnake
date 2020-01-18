@@ -17,14 +17,17 @@ def gotogamexy(x, y):
 def menu():
     print("1) Play")
     print("2) Bot")
-    print("3) Exit")
+    print("3) Bot V.2")
+    print("4) Exit")
     while(True):
         ch = getch()
         if ch == b'1':
-            return True
+            return 0
         elif ch == b'2':
-            return False
+            return 1
         elif ch == b'3':
+            return 2
+        elif ch == b'4':
             exit()
 
 def print_score():
@@ -158,17 +161,19 @@ def main():
     direction = 'a'
     score = 0
     paused = False
-    player = menu()
-    if player:
+    user = menu()
+    if user == 0:
         sleep_frequency = 0.1
     else:
         sleep_frequency = 0.003
     print_board()
     new_fruit()
     while True:
-        if player:
+        if user == 0:
             kbin()
-        else:
+        elif user == 1:
+            direction = bot_move(fruit, direction, height, width, tail, head)
+        elif user == 2:
             direction = bot_move(fruit, direction, height, width, tail, head)
         if not paused:
             print_head()
