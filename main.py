@@ -182,15 +182,15 @@ def main():
         elif user == 2:
             direction = b2_move(fruit, direction, height, width, tail, head)
         if not paused:
+            move()
+            if loss(): break
             delete_tail()
             print_tail()
             print_head()
-            time.sleep(sleep_frequency[user])
-            if loss(): break
             if detect_fruit_collect(): 
                 if not new_fruit():
                     break
-            move()
+            time.sleep(sleep_frequency[user])
     gotoxy(1, height + 3)
     cursor.show()
 
