@@ -65,7 +65,7 @@ def delete_tail():
 def loss():
     if head.y < 1 or head.y > height or head.x < 1 or head.x > width:
             return True
-    for point in tail:
+    for point in tail[:-1]:
         if point.x == head.x and point.y == head.y:
             return True
     return False
@@ -137,10 +137,10 @@ def detect_fruit_collect():
 
 def new_fruit():
     global fruit
-    while True:
+    for i in range(614656):
         fruit = coord(randrange(1, width), randrange(1, height))
         fruit_in_tail = False
-        for point in tail:
+        for point in tail[:-1]:
             if fruit.x == point.x and fruit.y == point.y:
                 fruit_in_tail = True
                 break
