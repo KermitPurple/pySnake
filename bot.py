@@ -32,7 +32,7 @@ def create_new_pos(head, potential_direction):
     return new_pos
 
 def desirable_move(fruit, direction, height, width, tail, head, potential_direction):
-    if path_exists(fruit, direction, height, width, tail, head, potential_direction) and valid_move(fruit, direction, height, width, tail, head, potential_direction):
+    if valid_move(fruit, direction, height, width, tail, head, potential_direction) and path_exists(fruit, direction, height, width, tail, head, potential_direction):
         return True
 
 def valid_move(fruit, direction, height, width, tail, head, potential_direction):
@@ -52,4 +52,27 @@ def panic_mode(fruit, direction, height, width, tail, head):
     return direction
 
 def path_exists(fruit, direction, height, width, tail, head, potential_direction):
+    path_head = create_new_pos(head, potential_direction)
+    path = [""]
+    first = ''
+    while not valid_path(path_head, fruit, first):
+        first = path.pop(0)
+        for direct in ['w', 'a', 's', 'd']:
+            if valid_move(fruit, direction, height, width, tail, path_head, direct):
+                path.append(first + direct)
     return True
+
+def valid_path(head, fruit, path):
+    pos = coord(head.x, head.y)
+    for ch in path:
+        if ch == 'w':
+            pos.y -= 1
+        elif ch == 'a':
+            pos.x -= 1
+        elif ch == 's':
+            pos.y += 1
+        elif ch == 'd':
+            pos.x += 1
+    if int(pos.x) == fruit.x and int(pos.y) == fruit.y:
+        return True
+    return False
