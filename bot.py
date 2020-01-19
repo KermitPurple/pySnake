@@ -20,8 +20,7 @@ def bot_move(fruit, direction, height, width, tail, head):
     else:
         return panic_mode(fruit, direction, height, width, tail, head)
 
-def valid_move(fruit, direction, height, width, tail, head, potential_direction):
-    #create point 1 forward
+def create_new_pos(potential_direction):
     if potential_direction == 'w':
         new_pos = coord(head.x, head.y - 1)
     elif potential_direction == 'a':
@@ -30,6 +29,10 @@ def valid_move(fruit, direction, height, width, tail, head, potential_direction)
         new_pos = coord(head.x, head.y + 1)
     elif potential_direction == 'd':
         new_pos = coord(head.x + 1, head.y)
+    return new_pos
+
+def valid_move(fruit, direction, height, width, tail, head, potential_direction):
+    new_pos = create_new_pos()
     #test for moves
     if not path_exists(fruit, direction, height, width, tail, head, potential_direction):
         return False        
@@ -47,4 +50,6 @@ def panic_mode(fruit, direction, height, width, tail, head):
     return direction
 
 def path_exists(fruit, direction, height, width, tail, head, potential_direction):
-    return True
+    new_pos
+    for direct in ['w','a','s','d']:
+
