@@ -170,7 +170,8 @@ def main():
     direction = 'a'
     score = 0
     paused = False
-    user = menu()
+    #user = menu()
+    user = 1
     sleep_frequency = [0.1, 0.003, 0]
     print_board()
     new_fruit()
