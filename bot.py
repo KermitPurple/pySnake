@@ -70,4 +70,3 @@ def valid_spaces(height, width, tail, head):
                         break
             if valid_spot:
                 spaces.append(point)
-
