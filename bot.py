@@ -1,6 +1,5 @@
 from coord import coord
-
-#TODO: create anti box software
+import queue
 
 def bot_move(fruit, direction, height, width, tail, head):
     if head.x < fruit.x:
@@ -49,11 +48,25 @@ def panic_mode(fruit, direction, height, width, tail, head):
     for potential_direction in ['w','a','s','d']:
         if desirable_move(fruit, direction, height, width, tail, head, potential_direction):
             return potential_direction
+    for potential_direction in ['w','a','s','d']:
+        if valid_move(fruit, direction, height, width, tail, head, potential_direction):
+            return potential_direction
     return direction
 
 def path_exists(fruit, direction, height, width, tail, head, potential_direction):
-    spaces = valid_spaces(height, width, tail, head)
-    return True
+    open_spaces = valid_spaces(height, width, tail, head)
+    q = queue.Queue()
+    q.put(create_new_pos(head, potential_direction))
+    while not q.empty():
+        front = q.get()
+        for direct in ['w','a','s','d']:
+            new_pos = create_new_pos(front, direct)
+            if new_pos == fruit:
+                return True
+            if new_pos in open_spaces:
+                open_spaces.remove(new_pos)
+                q.put(new_pos)
+    return False
 
 def valid_spaces(height, width, tail, head):
     spaces = []
@@ -70,3 +83,4 @@ def valid_spaces(height, width, tail, head):
                         break
             if valid_spot:
                 spaces.append(point)
+    return spaces

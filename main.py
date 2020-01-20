@@ -195,4 +195,8 @@ def main():
     cursor.show()
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+        with open("scores.txt", 'a') as f:
+            f.write(str(score) + '\n')
+
