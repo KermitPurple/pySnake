@@ -3,9 +3,9 @@ import queue
 from enum import Enum
 
 class State(Enum):
-    EMPTY = 0
-    REACHABLE = 1
-    BLOCKED = 2
+    UNREACHABLE = 1
+    REACHABLE = 2
+    BLOCKED = 3
 
 def bot_move(fruit, direction, height, width, tail, head):
     if head.x < fruit.x:
@@ -60,33 +60,33 @@ def panic_mode(fruit, direction, height, width, tail, head):
     return direction
 
 def path_exists(fruit, direction, height, width, tail, head, potential_direction):
-    open_spaces = valid_spaces(height, width, tail, head)
+    board = valid_spaces(height, width, tail, head)
     q = queue.Queue()
-    q.put(create_new_pos(head, potential_direction))
+    potential_head = create_new_pos(head, potential_direction)
+    q.put(potential_head)
+    board[int(potential_head.y-1)][int(potential_head.x-1)] = State.REACHABLE
     while not q.empty():
         front = q.get()
         for direct in ['w','a','s','d']:
             new_pos = create_new_pos(front, direct)
-            if new_pos == fruit:
-                return True
-            if new_pos in open_spaces:
-                open_spaces.remove(new_pos)
-                q.put(new_pos)
+            if not(new_pos.x < 1 or new_pos.x > width or new_pos.y < 1 or new_pos.y > height or (new_pos.x == head.x and new_pos.y == head.y)):
+                if new_pos == fruit:
+                    return True
+                if board[int(new_pos.y-1)][int(new_pos.x-1)] == State.UNREACHABLE:
+                    board[int(new_pos.y-1)][int(new_pos.x-1)] = State.REACHABLE
+                    q.put(new_pos)
     return False
 
 def valid_spaces(height, width, tail, head):
     spaces = []
     for i in range(height):
+        spaces.append([])
         for j in range(width):
-            valid_spot = True
             point = coord(j+1, i+1)
-            if point.x < 1 or point.x > width or point.y < 1 or point.y > height or (point.x == head.x and point.y == head.y):
-                valid_spot = False
+            for tail_point in tail:
+                if point.x == tail_point.x and point.y == tail_point.y:
+                    spaces[i].append(State.BLOCKED)
+                    break
             else:
-                for tail_point in tail:
-                    if point.x == tail_point.x and point.y == tail_point.y:
-                        valid_spot = False
-                        break
-            if valid_spot:
-                spaces.append(point)
+                spaces[i].append(State.UNREACHABLE)
     return spaces
