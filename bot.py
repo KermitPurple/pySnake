@@ -1,5 +1,11 @@
 from coord import coord
 import queue
+from enum import Enum
+
+class State(Enum):
+    EMPTY = 0
+    REACHABLE = 1
+    BLOCKED = 2
 
 def bot_move(fruit, direction, height, width, tail, head):
     if head.x < fruit.x:
