@@ -159,7 +159,7 @@ def new_fruit():
     print(Style.RESET_ALL)
     return True
 
-def main():
+def main(auto, auto_user = 0):
     global fruit, score, length_to_add, paused, direction, height, width, tail, head
     height = 28 # Make these values even or the spawnpoint will not be on a square usable in the game
     width = 28 # ^^^^^^^^^^^^^^^^^^^^^
@@ -170,8 +170,10 @@ def main():
     direction = 'a'
     score = 0
     paused = False
-    #user = menu()
-    user = 1
+    if auto:
+        user = auto_user
+    else:
+        user = menu()
     sleep_frequency = [0.1, 0.003, 0]
     print_board()
     new_fruit()
@@ -194,10 +196,8 @@ def main():
             time.sleep(sleep_frequency[user])
     gotoxy(1, height + 3)
     cursor.show()
+    if auto:
+        return score
 
 if __name__ == "__main__":
-    while True:
-        main()
-        with open("scores.txt", 'a') as f:
-            f.write(str(score) + '\n')
-
+    main(False)
