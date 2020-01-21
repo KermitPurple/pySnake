@@ -48,7 +48,7 @@ def valid_move(fruit, direction, height, width, tail, head, potential_direction)
     #test for moves
     if new_pos.y > height or new_pos.y < 1 or new_pos.x > width or new_pos.x < 1:
         return False
-    for point in tail:
+    for point in tail[:-1]:
         if new_pos.x == point.x and new_pos.y == point.y:
             return False
     return True
@@ -86,7 +86,7 @@ def valid_spaces(height, width, tail, head):
         spaces.append([])
         for j in range(width):
             point = coord(j+1, i+1)
-            for tail_point in tail:
+            for tail_point in tail[:-1]:
                 if point.x == tail_point.x and point.y == tail_point.y:
                     spaces[i].append(State.BLOCKED)
                     break
