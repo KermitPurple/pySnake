@@ -59,7 +59,7 @@ def panic_mode(fruit, direction, height, width, tail, head):
         if desirable_move(fruit, direction, height, width, tail, head, potential_direction):
             return potential_direction
     for potential_direction in ['w','a','s','d']:
-        if valid_move(fruit, direction, height, width, tail, head, potential_direction):
+        if valid_move(fruit, direction, height, width, tail, head, potential_direction) and not is_one_wide(fruit, direction, height, width, tail, head, potential_direction):
             return potential_direction
     return direction
 
@@ -95,5 +95,7 @@ def valid_spaces(height, width, tail, head):
                 spaces[i].append(State.UNREACHABLE)
     return spaces
 
-def is_one_wide(direction, height, width, tail, head, potential_direction):
+def is_one_wide(fruit, direction, height, width, tail, head, potential_direction):
     new_pos = create_new_pos(head, potential_direction)
+    return False
+
