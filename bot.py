@@ -2,6 +2,8 @@ from coord import coord
 import queue
 from enum import Enum
 
+#create Larger area thing
+
 class State(Enum):
     UNREACHABLE = 1
     REACHABLE = 2
