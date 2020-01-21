@@ -2,6 +2,7 @@ from coord import coord
 import queue
 from enum import Enum
 
+#create 1-wide avoider
 #create Larger area thing
 
 class State(Enum):
