@@ -2,8 +2,9 @@ from coord import coord
 import queue
 from enum import Enum
 
-#create 1-wide avoider
-#create Larger area thing
+#TODO:create 1-wide avoider
+#TODO:create Larger area thing
+#TODO:make valid move use the grid
 
 class State(Enum):
     UNREACHABLE = 1
@@ -93,3 +94,6 @@ def valid_spaces(height, width, tail, head):
             else:
                 spaces[i].append(State.UNREACHABLE)
     return spaces
+
+def is_one_wide(direction, height, width, tail, head, potential_direction):
+    new_pos = create_new_pos(head, potential_direction)
