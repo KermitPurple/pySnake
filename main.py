@@ -29,6 +29,7 @@ def menu():
         elif ch == b'3':
             return 2
         elif ch == b'4':
+            cursor.show()
             exit()
 
 def print_score():
