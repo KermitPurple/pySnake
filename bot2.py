@@ -1,6 +1,10 @@
 from coord import coord
 
 def bot_move(fruit, direction, height, width, tail, head):
+    return follow_path(fruit, direction, height, width, tail, head)
+
+
+def follow_path(fruit, direction, height, width, tail, head):
     if head.x == 1:
         if head.y == 1:
             return 'd'
