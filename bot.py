@@ -2,7 +2,6 @@ from coord import coord
 import queue
 from enum import Enum
 
-#TODO:create 1-wide avoider
 #TODO:create Larger area thing
 #TODO:make valid move use the grid
 
