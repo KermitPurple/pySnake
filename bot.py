@@ -41,7 +41,7 @@ def create_new_pos(head, potential_direction):
     return new_pos
 
 def desirable_move(fruit, direction, height, width, tail, head, potential_direction):
-    if valid_move(fruit, direction, height, width, tail, head, potential_direction) and path_exists(fruit, direction, height, width, tail, head, potential_direction):
+    if valid_move(fruit, direction, height, width, tail, head, potential_direction) and path_exists(fruit, direction, height, width, tail, head, potential_direction) and not is_one_wide(fruit, direction, height, width, tail, head, potential_direction):
         return True
 
 def valid_move(fruit, direction, height, width, tail, head, potential_direction):
@@ -60,6 +60,9 @@ def panic_mode(fruit, direction, height, width, tail, head):
             return potential_direction
     for potential_direction in ['w','a','s','d']:
         if valid_move(fruit, direction, height, width, tail, head, potential_direction) and not is_one_wide(fruit, direction, height, width, tail, head, potential_direction):
+            return potential_direction
+    for potential_direction in ['w','a','s','d']:
+        if valid_move(fruit, direction, height, width, tail, head, potential_direction):
             return potential_direction
     return direction
 
@@ -97,5 +100,15 @@ def valid_spaces(height, width, tail, head):
 
 def is_one_wide(fruit, direction, height, width, tail, head, potential_direction):
     new_pos = create_new_pos(head, potential_direction)
-    return False
-
+    if potential_direction == 'w' or potential_direction == 's':
+        directions = ['a','d']
+    elif potential_direction == 'a' or potential_direction == 'd':
+        directions = ['w','s']
+    while True:
+        for direct in directions:
+            if valid_move(fruit, direction, height, width, tail, new_pos, direct):
+                return False
+        if not valid_move(fruit, direction, height, width, tail, new_pos, potential_direction):
+            return True
+        else:
+            new_pos = create_new_pos(new_pos, potential_direction)
