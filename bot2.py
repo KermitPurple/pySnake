@@ -9,6 +9,8 @@ def bot_move(fruit, direction, height, width, tail, head):
         if head.y == height:
             return 'a'
         return 's'
+    elif head.y == 1:
+        return 'd'
     elif head.y == 2:
         if head.x % 2 == 1:
             return 'a'
@@ -17,5 +19,6 @@ def bot_move(fruit, direction, height, width, tail, head):
         if head.x % 2 == 1:
             return 'w'
         return 'a'
-    else:
-        return direction
+    elif head.x % 2 == 1:
+        return 'w'
+    return 's'
